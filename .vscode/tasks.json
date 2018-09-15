@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build particle explosion",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                ".\\src\\particle exploding\\main.cpp",
+                "-o",
+                ".\\src\\particle exploding\\main",
+                "-lmingw32",
+                "-lSDL2main",
+                "-lSDL2"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run particle explosion",
+            "type": "shell",
+            "command": "Start-Process -FilePath '.\\src\\particle exploding\\main.exe'",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
