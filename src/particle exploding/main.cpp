@@ -1,22 +1,43 @@
+#define SDL_MAIN_HANDLED  // Fix something... :/
+#include <SDL2/SDL.h>
 #include <stdio.h>
-#include "SDL2/SDL.h"
+#include <iostream>
+using namespace std;
 
-int main(int argc, char* args[]) {
-    SDL_Window* window;
-
-    SDL_Init(SDL_INIT_VIDEO);
-
-    window = SDL_CreateWindow("SDL2 Window", 100, 100, 640, 480, 0);
-
-    if (window == NULL) {
-        printf("Could not create window: %s\n", SDL_GetError());
+int main() {
+    const int SCREEN_WIDTH = 800;
+    const int SCREEN_HEIGHT = 600;
+    if (SDL_Init(SDL_INIT_VIDEO)) {
+        cout << "SDL Init failed" << endl;
         return 1;
     }
+    SDL_Window *window = SDL_CreateWindow(
+        "Particle Fire Explotion",
+        SDL_WINDOWPOS_UNDEFINED,
+        SDL_WINDOWPOS_UNDEFINED,
+        SCREEN_WIDTH,
+        SCREEN_HEIGHT,
+        SDL_WINDOW_SHOWN);
 
-    SDL_Delay(3000);
+    if (window == NULL) {
+        printf("Could not create window: %s/n", SDL_GetError());
+        SDL_Quit();
+        return 2;
+    }
+    bool quit = false;
+    SDL_Event event;
+    while (!quit) {
+        // Update particles
+        // Draw particles
+        // Check for messages/events
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                quit = true;
+            };
+        };
+    };
 
     SDL_DestroyWindow(window);
-
     SDL_Quit();
 
     return 0;
