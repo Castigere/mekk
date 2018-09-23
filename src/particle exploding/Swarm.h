@@ -7,15 +7,16 @@ namespace ejh {
 
 class Swarm {
    public:
-    const static int NPARTICLES = 1000;
+    const static int NPARTICLES = 5000;
 
    private:
     Particle * const m_pParticles;
+    int lastTime;
 
    public:
     Swarm();
     ~Swarm();
-    void update();
+    void update(int elapsed);
     const Particle * const getParticles();
 };
 }  // namespace ejh
